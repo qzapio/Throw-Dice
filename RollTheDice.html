@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roll The Dice</title>
+</head>
+<style>
+    body{
+        background-color:rgb(43, 38, 38);
+        font-size: large;
+        font-weight: bold;
+    }
+    div{
+        margin: auto;
+  width: 20vh;
+  height:20vh;
+        display: inline;
+        /* width:100px;
+        height:100px; */
+        display: solid;
+        border-color: rgb(46, 17, 17);
+        /* background-color: rgb(231, 99, 99); */
+        color:white;
+      
+    }
+    #winner{
+          background-color:rgb(231, 93, 114);
+        margin-left: 50%;
+    }
+    #member-1{
+        background-color:rgb(90, 222, 231);
+        margin-left:20%;
+        margin-bottom: -10%;
+        margin-top: 20px;
+       
+        
+    }
+    #member-2{
+        background-color:rgb(93, 210, 231);
+        margin-left: 50%;
+    }
+    #member-3{
+        background-color:rgb(109, 206, 212);
+        margin-left: 75%;
+        margin-top:-15% ;
+    }
+
+    #roll{
+        width:100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: red;
+        color:white;
+        display:inline;
+        margin-top:100px;
+        margin-left: 50%;
+    }
+    #reset{
+        margin-left: 30px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: rgb(255, 115, 0);
+        color:white;;
+    }
+
+    #winner,#member-1,#member-2,#member-3{
+        display: flex;
+        /* flex-direction: column-reverse; */
+        justify-content: center;
+        align-items: center;
+        
+    }
+   
+</style>
+<body>
+  <div id="container">
+    <div id="winner">Winner</div>
+    <div id="member-1">Member A</div>
+    <div id="member-2">Member B</div>
+    <div id="member-3">Member c</div>   
+    <button id="roll">Roll The Dice</button>
+    <button id="reset">Reset</button>
+  </div>
+</body>
+<script>
+   let dice =document.getElementById('roll');
+   dice.addEventListener('click',createRandomNum);
+  function createRandomNum(){
+    const randomNumMember_A =  Math.floor(Math.random()*6+1);
+    document.getElementById('member-1').innerText = randomNumMember_A;
+    // document.getElementById('member-1').style.fontSize='50px';
+
+
+    const randomNumMember_B =  Math.floor(Math.random()*6+1);
+    document.getElementById('member-2').innerText = randomNumMember_B;
+    // document.getElementById('member-2').style.fontSize='50px';
+
+    const randomNumMember_C =  Math.floor(Math.random()*6+1);
+    document.getElementById('member-3').innerText = randomNumMember_C;
+    // document.getElementById('member-3').style.fontSize='50px';
+ 
+    if(randomNumMember_A>randomNumMember_B&&randomNumMember_A>randomNumMember_C)
+    {
+        document.getElementById('winner').innerText = 'Member -A is Winner';
+        document.getElementById('member-1').style.backgroundColor = "green";
+
+        if(randomNumMember_B>randomNumMember_C){
+            document.getElementById('member-2').style.backgroundColor = "yellow";
+        document.getElementById('member-2').style.color = "orange"; 
+        document.getElementById('member-3').style.backgroundColor = "red";
+        }
+        else{
+            document.getElementById('member-3').style.backgroundColor = "yellow";
+        document.getElementById('member-3').style.color = "orange";  
+        document.getElementById('member-2').style.backgroundColor = "red";
+        }
+    }
+    
+
+    if(randomNumMember_A==randomNumMember_B)
+    {
+        document.getElementById('member-1').style.backgroundColor = "blue";
+        document.getElementById('member-2').style.backgroundColor = "blue";
+        document.getElementById('winner').innerText='Tie between member-1 and member-2';
+    
+    }
+    if(randomNumMember_C==randomNumMember_B)
+    {
+        document.getElementById('member-3').style.backgroundColor = "blue";
+        document.getElementById('member-2').style.backgroundColor = "blue";
+        document.getElementById('winner').innerText='Tie between member-2 and member-3'
+   
+    }
+    if(randomNumMember_A==randomNumMember_C)
+    {
+        document.getElementById('member-1').style.backgroundColor = "blue";
+        document.getElementById('member-3').style.backgroundColor = "blue";
+        document.getElementById('winner').innerText='Tie between member-1 and member-3';
+    
+    }
+    
+
+
+    if(randomNumMember_A==randomNumMember_B&&randomNumMember_A==randomNumMember_C){
+        document.getElementById('member-1').style.backgroundColor = 'blue'
+        document.getElementById('member-2').style.backgroundColor = 'blue'
+        document.getElementById('member-3').style.backgroundColor = 'blue'
+        document.getElementById('winner').innerText = 'tie Roll dice again';
+        
+    }
+    if(randomNumMember_B>randomNumMember_A&&randomNumMember_B>randomNumMember_C)
+    {
+        document.getElementById('winner').innerText = 'Member -B is Winner';
+        document.getElementById('member-2').style.backgroundColor = "green";
+
+        if(randomNumMember_A>randomNumMember_C){
+            document.getElementById('member-1').style.backgroundColor = "yellow";
+        document.getElementById('member-1').style.color = "orange"; 
+        document.getElementById('member-3').style.backgroundColor = "red";
+        }
+        else{
+            document.getElementById('member-3').style.backgroundColor = "yellow";
+        document.getElementById('member-3').style.color = "orange"; 
+        document.getElementById('member-1').style.backgroundColor = "red"; 
+        }
+    }
+    if(randomNumMember_C>randomNumMember_B&&randomNumMember_C>randomNumMember_A)
+    {
+        document.getElementById('winner').innerText = 'Member -C is Winner';
+        document.getElementById('member-3').style.backgroundColor = "green";
+
+        if(randomNumMember_A>randomNumMember_B){
+            document.getElementById('member-1').style.backgroundColor = "yellow";
+        document.getElementById('member-1').style.color = "orange";
+        document.getElementById('member-2').style.backgroundColor = "red"; 
+        }
+        else{
+            document.getElementById('member-2').style.backgroundColor = "yellow";
+        document.getElementById('member-2').style.color = "orange"; 
+        document.getElementById('member-1').style.backgroundColor = "red"; 
+        }
+    }
+    let diceReset =document.getElementById('reset');
+   diceReset.addEventListener('click',reset);
+   function reset(){
+    document.getElementById('member-1').innerText='Member-A'
+    document.getElementById('member-1').style.backgroundColor='rgb(90, 222, 231)';
+    document.getElementById('member-1').style.color='white';
+
+    document.getElementById('member-2').innerText='Member-B'
+    document.getElementById('member-2').style.backgroundColor='rgb(90, 222, 231)';
+    document.getElementById('member-2').style.color='white';
+    
+    document.getElementById('member-3').innerText='Member-C'
+    document.getElementById('member-3').style.backgroundColor='rgb(90, 222, 231)';
+    document.getElementById('member-3').style.color='white';
+
+    document.getElementById('winner').innerText='Winner'
+    document.getElementById('winner').style.backgroundColor='rgb(90, 222, 231)';
+    document.getElementById('winner').style.color='white';
+
+   }
+    
+
+    }
+
+  
+</script>
+</html>
